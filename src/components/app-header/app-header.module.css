@@ -1,0 +1,29 @@
+.header {
+  background-color: rgba(28, 28, 33, 1);
+}
+
+.container {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 1920px;
+  height: 88px;
+  border: 0px solid #ccc;
+}
+
+.centeredContent {
+  border: 0px solid #ccc;
+}
+
+.navLogo {
+  width: 30%;
+  text-align: left;
+  padding-left: 50px;
+}
+
+.nameBtn {
+  vertical-align: top;
+  font-size: larger;
+}
