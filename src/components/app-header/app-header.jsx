@@ -13,7 +13,7 @@ export default function AppHeader() {
   return (
     <header className={st.header}>
       <nav className={st.container}>
-        <div className={st.centeredContent}>
+        <div >
           <NavigationItem 
             htmlType='button' 
             type='secondary'
@@ -25,10 +25,10 @@ export default function AppHeader() {
             text='Лента заказов'
             icon={<ListIcon type='secondary' />}/>
         </div>
-        <div className={`${st.centeredContent} ${st.navLogo}`}>
+        <div className={st.logo}>
           <Logo />
         </div>
-        <div className={st.centeredContent}>
+        <div >
           <NavigationItem 
             text='Личный кабинет'
             htmlType='button' 

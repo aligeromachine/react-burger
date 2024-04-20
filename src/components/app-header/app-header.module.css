@@ -8,22 +8,16 @@
   align-items: center;
   justify-content: center;
   margin: auto;
-  width: 1920px;
   height: 88px;
   border: 0px solid #ccc;
 }
 
-.centeredContent {
-  border: 0px solid #ccc;
-}
-
-.navLogo {
+.logo {
   width: 30%;
   text-align: left;
-  padding-left: 50px;
+  padding-left: 60px;
 }
 
 .nameBtn {
-  vertical-align: top;
   font-size: larger;
 }

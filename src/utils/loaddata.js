@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const cardModel = PropTypes.shape(
+export const IngredientModel = PropTypes.shape(
   {
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

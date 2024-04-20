@@ -4,7 +4,13 @@
 
 .appMain {
   display: flex;
-  grid-template-columns: repeat(2, 600px);
-  column-gap: 40px;
+  align-items: center;
   justify-content: center;
+  column-gap: 40px;
+  margin: auto;
+  border: 0px solid #ccc;
+}
+
+.item {
+  width: 600px;
 }
