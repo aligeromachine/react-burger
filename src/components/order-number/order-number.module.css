@@ -1,0 +1,12 @@
+.orderContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: 0px solid #ccc;
+  row-gap: 50px;
+  margin-top: 60px;
+  width: 720px;
+  height: 718px;
+}

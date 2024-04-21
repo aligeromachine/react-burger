@@ -1,0 +1,34 @@
+.constructor {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: 0px solid #ccc;
+}
+
+.ingredientsScroll {
+  height: 40vh;
+  overflow-y: scroll;
+  border: 0px solid #ccc;
+}
+
+.Container {
+  margin: 10px 0;
+  border: 0px solid #ccc;
+  text-align: right;
+}
+
+.order {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  border: 0px solid #ccc;
+  margin-top: 20px;
+}
+
+.modalContainer {
+  overflow: hidden;
+}

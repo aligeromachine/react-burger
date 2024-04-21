@@ -1,11 +1,11 @@
 .ingredients {
   overflow-y: scroll;
-  height: 75vh;
+  height: 70vh;
   border: 0px solid #ccc;
 }
 
 .header {
-  margin-top: 20px;
+  margin: 30px 0;
   border: 0px solid #ccc;
 }
 
@@ -46,9 +46,6 @@
   border: 0px solid #58b461;
 }
 
-
-
-
-
-
-
+.modalContainer {
+  overflow: hidden;
+}
