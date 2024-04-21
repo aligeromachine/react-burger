@@ -9,7 +9,7 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from "../modal/modal";
-import { OrderNumber } from "../order-number/order-number";
+import { OrderInfo } from "../order-info/order-info";
 
 export const BurgerConstructor = ({ingredients}) => {
   const bun = ingredients.find(x => x.type === "bun");
@@ -74,7 +74,7 @@ export const BurgerConstructor = ({ingredients}) => {
               <Modal 
               modalId='constructor-order-modal' 
               onClose={() => setIsOrderVisible(false)}>
-                <OrderNumber />
+                <OrderInfo />
               </Modal>
             )}
           </div>
