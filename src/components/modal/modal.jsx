@@ -4,19 +4,27 @@ import { createPortal } from "react-dom";
 import st from "./modal.module.css";
 import PropTypes from "prop-types";
 
-function Modal({ onClose, children, modalId }) {
-  const closeModal = (e) => {
-    if (e.key === "Escape") {
-      onClose();
-    }
-  };
-  
+const ModalOverlay = ({ onClick, overlay }) => {
+  return <div className={overlay} onClick={onClick}></div>;
+}
+
+ModalOverlay.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  overlay: PropTypes.string.isRequired,
+};
+
+export const Modal = ({ onClose, children }) => {
   React.useEffect(() => {
-    window.addEventListener("keydown", closeModal);
-    return () => window.removeEventListener("keydown", closeModal);
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
-  const modalRoot = document.getElementById(modalId);
+  const modalRoot = document.getElementById("modals");
 
   return createPortal(
     <div>
@@ -26,7 +34,7 @@ function Modal({ onClose, children, modalId }) {
         </button>
         {children}
       </div>
-      <div className={st.overlay} onClick={() => onClose()}></div>
+      <ModalOverlay overlay={st.overlay} onClick={() => onClose()} />
     </div>,
     modalRoot
   );
@@ -36,7 +44,6 @@ function Modal({ onClose, children, modalId }) {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  modalId: PropTypes.string.isRequired,
 };
 
 export default Modal;

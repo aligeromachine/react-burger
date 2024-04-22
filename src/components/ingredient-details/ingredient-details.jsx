@@ -1,5 +1,5 @@
 import React from 'react';
-import st from './ingredient-info.module.css';
+import st from './ingredient-details.module.css';
 import PropTypes from 'prop-types';
 import { IngredientModel } from '../../utils/loaddata';
 
@@ -17,7 +17,7 @@ ElementText.propTypes = {
   value: PropTypes.number.isRequired
 };
 
-export function IngredientInfo({ info })
+export function IngredientDetails({ info })
 {
   return (
     <div className={st.infoContainer}>
@@ -25,7 +25,7 @@ export function IngredientInfo({ info })
       <img 
       src={info.image_large} 
       className={st.infoImage} 
-      alt='image_large' />
+      alt='Фото ингредиента' />
         <p className={`text_type_main-medium mt-4 mb-6`}>{info.name}</p>
         <div className={st.infoCalories}>
             <ElementText name='Калории, ккал' value={info.calories} />
@@ -37,6 +37,6 @@ export function IngredientInfo({ info })
   );
 }
 
-IngredientInfo.propTypes = {
+IngredientDetails.propTypes = {
   info: IngredientModel
 };

@@ -4,8 +4,8 @@ import { IngredientModel } from '../../utils/loaddata';
 import st from './burger-ingredients.module.css';
 import {Counter, CurrencyIcon, Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
-import { IngredientInfo } from "../ingredient-info/ingredient-info";
-
+import { IngredientDetails } from "../ingredient-details/ingredient-details";
+import { useModal } from "../../hooks/useModal";
 
 export const BurgerIngredients = ({ingredients}) => {
   const tabs = [
@@ -33,11 +33,11 @@ export const BurgerIngredients = ({ingredients}) => {
     ref.current.scrollIntoView({behavior: 'smooth', block: 'start'});
   };
 
-  const [isElemVisible, setIsElemVisible] = React.useState(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
   const [curElement, setCurElement] = React.useState({});
   const setCurrentElement = (item) => {
     setCurElement(item);
-    setIsElemVisible(true);
+    openModal(true);
   }
   return(
     <div >
@@ -63,9 +63,12 @@ export const BurgerIngredients = ({ingredients}) => {
                     onClick={() => setCurrentElement(item)}>
                       <img src={item.image} alt={item.name}/>
                       <Counter count={1} />
+                      
+                      <div className={st.ingredientBlock}>
+                        <p className="text_type_main-medium">{item.price}</p>
+                        <CurrencyIcon type="primary"/>
+                      </div>
                       <p className="text_type_main-default">{item.name}</p>
-                      <p className="text_type_main-medium">{item.price}</p>
-                      <CurrencyIcon type="primary"/>
                     </div>
                   ))}
               </div>
@@ -73,14 +76,10 @@ export const BurgerIngredients = ({ingredients}) => {
           </div>
         ))}
 
-        <div className={st.modalContainer} id='element-details-modal'>
-          {isElemVisible && (
-            <Modal            
-            modalId='element-details-modal' 
-            onClose={() => setIsElemVisible(false)}>
-              <IngredientInfo info={curElement} />
-            </Modal>)}
-        </div>
+        {isModalOpen && (
+          <Modal onClose={() => closeModal(false)}>
+            <IngredientDetails info={curElement} />
+          </Modal>)}
       </div>
     </div>
   );

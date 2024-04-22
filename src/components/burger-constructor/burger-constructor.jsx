@@ -9,13 +9,14 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from "../modal/modal";
-import { OrderInfo } from "../order-info/order-info";
+import { OrderDetails } from "../order-details/order-details";
+import { useModal } from "../../hooks/useModal";
 
 export const BurgerConstructor = ({ingredients}) => {
   const bun = ingredients.find(x => x.type === "bun");
   const Ingredients = ingredients.filter(x => x.type !== "bun");
 
-  const [isOrderVisible, setIsOrderVisible] = React.useState(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return(
     <div className={st.constructor}>
@@ -64,20 +65,16 @@ export const BurgerConstructor = ({ingredients}) => {
             htmlType="button"
             type="primary"
             size="medium"
-            onClick={() => setIsOrderVisible(true)}
+            onClick={() => openModal(true)}
           >
             <span>Оформить заказ</span>
           </Button>
           
-          <div className={st.modalContainer} id='constructor-order-modal'>
-            {isOrderVisible && (
-              <Modal 
-              modalId='constructor-order-modal' 
-              onClose={() => setIsOrderVisible(false)}>
-                <OrderInfo />
-              </Modal>
+          {isModalOpen && (
+            <Modal onClose={() => closeModal(false)}>
+              <OrderDetails />
+            </Modal>
             )}
-          </div>
         </div>
       </div>
      

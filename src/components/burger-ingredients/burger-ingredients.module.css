@@ -38,12 +38,20 @@
 
 .ingredientItem {
   display: flex;
-  position: relative;
-  flex-direction: column;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
   margin: auto;
   border: 0px solid #58b461;
+}
+
+.ingredientBlock {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  column-gap: 10px;
 }
 
 .modalContainer {

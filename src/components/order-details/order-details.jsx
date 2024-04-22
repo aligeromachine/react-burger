@@ -1,8 +1,8 @@
 import React from 'react';
-import st from './order-info.module.css';
+import st from './order-details.module.css';
 import orderApprove from '../../images/done.jpg';
 
-export const OrderInfo = () => {
+export const OrderDetails = () => {
   return (
     <div className={st.orderContainer}>
       <p className="text_type_digits-large">034536</p>

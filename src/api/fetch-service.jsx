@@ -7,8 +7,8 @@ export async function fetchData(url) {
     }
     // Convert the response to JSON, This will be the resolved value of the Promise
     const report = await response.json(); 
-    return report;
+    return {report, err: false};
   } catch (e) {
-    throw e.message;
+    return {report: false, e};
   }
 }

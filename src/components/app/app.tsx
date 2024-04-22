@@ -6,18 +6,21 @@ import { BurgerIngredients } from '../burger-ingredients/burger-ingredients';
 import { BurgerConstructor } from '../burger-constructor/burger-constructor';
 
 function App() {
-  const [ingredients, setIngredients] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [err, setErr] = React.useState(false);
+  const [state, setIngredients] = React.useState({
+    ingredients: [], 
+    loading: false,
+    err: false
+  });
+ 
   const fetchCb = async () => {
     const url = 'https://norma.nomoreparties.space/api/ingredients';
-    try {
-      const respo = await Request.fetchData(url);
-      setIngredients(respo.data);
-    } catch {
-      setErr(true);
-    } finally {
-      setLoading(true); 
+    const {report, err} = await Request.fetchData(url);
+    if (report) {
+      setIngredients({...state, ingredients: report.data, loading: true});
+    }
+    if (err) {
+      console.log(err);
+      setIngredients({...state, err: true, loading: true});
     }
   };
 
@@ -30,12 +33,11 @@ function App() {
       <AppHeader />
       <main className={st.appMain}>
         <div className={st.item}>
-          {loading && !err && <BurgerIngredients ingredients={ingredients} />}
+          {state.loading && !state.err && <BurgerIngredients ingredients={state.ingredients} />}
         </div>
         <div className={st.item}>
-          {loading && !err && <BurgerConstructor ingredients={ingredients} />}
+          {state.loading && !state.err && <BurgerConstructor ingredients={state.ingredients} />}
         </div>
-        
       </main>
     </div>
   );
