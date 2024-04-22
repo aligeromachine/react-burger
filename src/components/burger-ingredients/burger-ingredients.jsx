@@ -63,7 +63,6 @@ export const BurgerIngredients = ({ingredients}) => {
                     onClick={() => setCurrentElement(item)}>
                       <img src={item.image} alt={item.name}/>
                       <Counter count={1} />
-                      
                       <div className={st.ingredientBlock}>
                         <p className="text_type_main-medium">{item.price}</p>
                         <CurrencyIcon type="primary"/>
