@@ -1,0 +1,23 @@
+.infoContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: 0px solid #ccc;
+  margin-top: 50px;
+  width: 720px;
+  height: 539px;
+}
+
+.infoImage {
+  width: 75%;
+  align-self: center;
+}
+
+.infoCalories {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}

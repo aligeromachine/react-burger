@@ -1,2 +1,0 @@
-# react-burger
-react-burger

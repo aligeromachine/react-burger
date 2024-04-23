@@ -1,0 +1,33 @@
+.modal {
+  position: absolute;
+  box-sizing: border-box;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: #1c1c21;
+  border: 1px solid rgba(76, 76, 255, 0.4);
+  border-radius: 40px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+}
+
+.close_button {
+  position: absolute;
+  background: none;
+  top: 60px;
+  right: 40px;
+  cursor: pointer;
+  border: 0px solid #ccc;
+}
+
+

@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 40px;
+  margin: auto;
+  border: 0px solid #ccc;
+}
+
+.item {
+  width: 600px;
+}
