@@ -65,13 +65,13 @@ export const BurgerConstructor = ({ingredients}) => {
             htmlType="button"
             type="primary"
             size="medium"
-            onClick={() => openModal(true)}
+            onClick={() => openModal()}
           >
             <span>Оформить заказ</span>
           </Button>
           
           {isModalOpen && (
-            <Modal onClose={() => closeModal(false)}>
+            <Modal onClose={() => closeModal()}>
               <OrderDetails />
             </Modal>
             )}

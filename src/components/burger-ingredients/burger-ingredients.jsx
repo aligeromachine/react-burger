@@ -37,7 +37,7 @@ export const BurgerIngredients = ({ingredients}) => {
   const [curElement, setCurElement] = React.useState({});
   const setCurrentElement = (item) => {
     setCurElement(item);
-    openModal(true);
+    openModal();
   }
   return(
     <div >
@@ -76,7 +76,7 @@ export const BurgerIngredients = ({ingredients}) => {
         ))}
 
         {isModalOpen && (
-          <Modal onClose={() => closeModal(false)}>
+          <Modal onClose={() => closeModal()}>
             <IngredientDetails info={curElement} />
           </Modal>)}
       </div>
