@@ -14,7 +14,7 @@ export const BurgerIngredients = ({ingredients}) => {
     { id: 3, name: 'Основное', type: 'main', ref: React.useRef(null) },
   ]
   
-  const [curTab, setCurTab] = React.useState('buns');
+  const [curTab, setCurTab] = React.useState('bun');
   
   const TabClick = (value) => {
     setCurTab(value);
@@ -39,6 +39,22 @@ export const BurgerIngredients = ({ingredients}) => {
     setCurElement(item);
     openModal();
   }
+
+  const handleScroll = (e) => {
+    tabs.map(p => {
+      const rect = p.ref.current.getBoundingClientRect();
+      if (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (800 + e.target.scrollTop || e.target.scrollHeight)
+      ) {
+        if (curTab != p.type) {
+          setCurTab(p.type);
+        }        
+      }
+    });
+  }
+
   return(
     <div >
       <h1 className={`${st.header} text_type_main-large`}>Соберите бургер</h1>
@@ -48,12 +64,16 @@ export const BurgerIngredients = ({ingredients}) => {
             onClick={() => TabClick(tab.type)} >{tab.name} </Tab>)}
       </div>
       
-      <div className={st.ingredients}>
+      <div 
+      className={st.ingredients}
+      onScroll={handleScroll} >
+
         {tabs.map((tab) => (
           <div key={tab.id} ref={tab.ref} className={st.Container}>
               <h2 className={`${st.headerTitle} text_type_main-medium`}>{tab.name}</h2>
               
-              <div className={st.ingredientList}>
+              <div className={st.ingredientList} >
+
                 {ingredients
                   .filter(item => item.type === tab.type)
                   .map(item => (
@@ -70,6 +90,7 @@ export const BurgerIngredients = ({ingredients}) => {
                       <p className="text_type_main-default">{item.name}</p>
                     </div>
                   ))}
+
               </div>
              
           </div>

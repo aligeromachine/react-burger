@@ -24,8 +24,8 @@
 .close_button {
   position: absolute;
   background: none;
-  top: 60px;
-  right: 40px;
+  top: 30px;
+  right: 30px;
   cursor: pointer;
   border: 0px solid #ccc;
 }
