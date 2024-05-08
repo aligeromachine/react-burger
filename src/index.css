@@ -19,6 +19,6 @@ code {
 }
 
 .on-hover {
-  box-shadow: 0px 0px 2px 2px var(--colors-interface-accent);
-  outline: 3px dotted var(--text-inactive-color);
+  outline: 4px dotted var(--text-inactive-color);
+  background-color: rgb(114, 78, 137);
 }
