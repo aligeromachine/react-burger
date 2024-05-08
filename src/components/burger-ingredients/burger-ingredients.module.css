@@ -1,15 +1,4 @@
-.ingredients {
-  overflow-y: scroll;
-  height: 70vh;
-  border: 0px solid #ccc;
-}
-
-.header {
-  margin: 30px 0;
-  border: 0px solid #ccc;
-}
-
-.tabList {
+.flex {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -18,43 +7,54 @@
   border: 0px solid #ccc;
 }
 
-.headerTitle {
-  margin: 20px 0;
+.header {
   text-align: left;
-  border: 0px solid #ccc;
+  margin: 30px 0;
 }
 
-.Container {
-  margin: 50px 0;
-  border: 0px solid #ccc;
-}
-
-.ingredientList {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 40px;
-  border: 0px solid #58b461;
-}
-
-.ingredientItem {
-  display: flex;
-  position: relative;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  border: 0px solid #58b461;
+.ingredients {
+overflow-y: scroll;
+height: 70vh;
+border: 0px solid #ccc;
 }
 
 .ingredientBlock {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  column-gap: 10px;
+margin: 50px 0;
 }
 
-.modalContainer {
-  overflow: hidden;
+.headerTitle {
+margin: 20px 0;
+text-align: left;
+border: 0px solid #ccc;
+}
+
+.ingredientList {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+row-gap: 40px;
+border: 0px solid #58b461;
+}
+
+.ingredientItem {
+display: flex;
+position: relative;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+margin: auto;
+border: 0px solid #58b461;
+}
+
+.ingredientImage {
+display: flex;
+position: relative;
+}
+
+.ingredientPrice {
+display: flex;
+flex-flow: row;
+justify-content: center;
+align-items: center;
+margin: auto;
+column-gap: 10px;
 }
