@@ -96,7 +96,6 @@ const ConstructorElem = ({ item, index, handle }) => {
       text={item.name}
       thumbnail={item.image_mobile}
       price={item.price}
-      extraClass='mb-4 ml-2'
       handleClose={() => handle(item)}/>
     </div>
   )
