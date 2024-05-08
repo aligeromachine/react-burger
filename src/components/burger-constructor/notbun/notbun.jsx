@@ -69,14 +69,14 @@ const ConstructorElem = ({ item, index, handle }) => {
       }
 
       const rect = ref.current.getBoundingClientRect()
-      const rectMiddleY = Math.abs(rect.bottom - rect.top);
+      const rectAbs = Math.abs(rect.bottom - rect.top);
       const offset = monitor.getClientOffset();
       const delta = offset.y - rect.top;
       
-      if (index < item.index && delta < rectMiddleY) {
+      if (index < item.index && delta < rectAbs) {
         return;
       }
-      if (index > item.index && delta > rectMiddleY) {
+      if (index > item.index && delta > rectAbs) {
         return;
       }
       moveElement(index, item.index);
