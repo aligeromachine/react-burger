@@ -8,7 +8,7 @@ export function OrderDetails()
 	const { orderData } = useSelector(store => store.orderDetails);
 
 	return (
-    <div className={st.orderContainer}>
+    <div className={st.orderContainer}>			
 			{orderData && (
 				<>
 					<p className="text_type_digits-large">{orderData.number}</p>
