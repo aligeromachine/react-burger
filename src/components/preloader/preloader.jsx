@@ -1,5 +1,5 @@
 import React from "react";
-import st from "./Preloader.module.css";
+import st from "./preloader.module.css";
 import PropTypes from 'prop-types';
 
 export const Preloader = ({ isLoading }) => {

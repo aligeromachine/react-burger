@@ -10,7 +10,7 @@ import { createOrder } from '../../../services/order-details';
 import { useModal } from '../../../hooks/useModal';
 import { OrderDetails } from '../../order-details/order-details';
 import { Modal } from '../../modal/modal';
-import { Preloader } from '../../preloader/Preloader';
+import { Preloader } from '../../preloader/preloader';
 
 export const ConstructorButton = () => {
 	const dispatch = useDispatch();
