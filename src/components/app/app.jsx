@@ -7,7 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { BurgerIngredients } from '../burger-ingredients/burger-ingredients';
 import { fetchIngredients } from '../../services/burger-ingredients';
-import { Preloader } from '../Preloader/Preloader';
+import { Preloader } from '../preloader/Preloader';
 
 function App() {
 

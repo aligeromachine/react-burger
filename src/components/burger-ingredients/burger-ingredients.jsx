@@ -24,7 +24,7 @@ export const BurgerIngredients = () => {
 
 	const [curTab, setCurTab] = React.useState('bun');
 
-	const handleScroll = () => {
+	const scrollHandle = () => {
 		const mainRect = refMain.current.getBoundingClientRect();
 		const type = tabs.sort((a, b) => {
 			const r1 = a.ref.current.getBoundingClientRect();
@@ -75,7 +75,7 @@ export const BurgerIngredients = () => {
 					</Tab>)}
 				</div>
 				
-				<div className={st.ingredients} onScroll={handleScroll}>
+				<div className={st.ingredients} onScroll={scrollHandle}>
 					{tabs.map((tab) => (
 						<div key={tab.id} className={st.ingredientBlock}>
 							<h2 className={`${st.headerTitle} `} ref={tab.ref}>
