@@ -31,7 +31,7 @@ export const NotBun = () => {
       <div className={st.constructorList}>
         {constructorIngredients.map((item, index) =>
           <ConstructorElem 
-          key={item._id}
+          key={item.uniqueId}
           index={index}
           item={item}
           handle={removeIngredient}/>)}
@@ -47,12 +47,11 @@ export const NotBun = () => {
 
 const ConstructorElem = ({ item, index, handle }) => {
   const dispatch = useDispatch();
-  const moveElement = React.useCallback((x, y) => dispatch(moveCard({ x, y })),[dispatch],);
   const ref = React.useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
     type: 'ConstructorElem',
-    item: { index },
+    item: { moveIndex: index },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),
@@ -64,7 +63,7 @@ const ConstructorElem = ({ item, index, handle }) => {
       if (!ref.current) {
         return;
       }
-      if (index === item.index) {
+      if (index === item.moveIndex) {
         return;
       }
 
@@ -73,13 +72,13 @@ const ConstructorElem = ({ item, index, handle }) => {
       const offset = monitor.getClientOffset();
       const delta = offset.y - rect.top;
       
-      if (index < item.index && delta < rectAbs) {
+      if (index < item.moveIndex && delta < rectAbs) {
         return;
       }
-      if (index > item.index && delta > rectAbs) {
+      if (index > item.moveIndex && delta > rectAbs) {
         return;
       }
-      moveElement(index, item.index);
+      dispatch(moveCard({ x: index, y: item.moveIndex }))
     },
   });
 
