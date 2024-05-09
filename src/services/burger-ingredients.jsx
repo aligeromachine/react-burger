@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import { request } from "../api/requests";
-import { API } from "../api/const";
+import { getIngredients } from "../api/requests";
 
 const initialState = {
   ingredients: [],
@@ -10,10 +9,8 @@ const initialState = {
 export const fetchIngredients = createAsyncThunk(
   'burgerIngredients/fetchIngredients', 
   async () => {
-    const url = `${API.baseUrl}/${API.endpoints.ingredients}`;
-    const report = await request(url);
-    if (report?.success) return report.data;
-    return Promise.reject("Not success");
+    const response = await getIngredients();
+    return response.data;
   }
 )
 

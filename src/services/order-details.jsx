@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { request } from "../api/requests";
-import { API } from "../api/const";
+import { postOrder } from "../api/requests";
 
 const initialState = {
   orderData: null,
@@ -10,18 +9,8 @@ const initialState = {
 export const createOrder = createAsyncThunk(
   'orderDetails/createOrder', 
   async (order) => {
-    const url = `${API.baseUrl}/${API.endpoints.order}`;
-    const jsonData = JSON.stringify({ingredients: order.map((item) => item._id)});
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: jsonData,
-    };
-    const response = await request(url, options);
-    if (response?.success) return response;
-    return Promise.reject("Not success");
+    const response = await postOrder(order);
+    return response.order;
   }
 )
 

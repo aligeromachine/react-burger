@@ -7,7 +7,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag, useDrop } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
+
 import { IngredientModel } from '../../../utils/loaddata';
 import { ingredientsAdd, moveCard, ingredientsDel } from '../../../services/burger-constructor';
 
@@ -21,7 +21,7 @@ export const NotBun = () => {
     collect: monitor => ({
       isHover: monitor.isOver()
     }),
-    drop(payload) {dispatch(ingredientsAdd({...payload, idx: uuidv4()}));}, 
+    drop(payload) {dispatch(ingredientsAdd(payload));}, 
   });
 
   return (
@@ -29,11 +29,11 @@ export const NotBun = () => {
       {constructorIngredients && constructorIngredients.length > 0 
       ?   
       <div className={st.constructorList}>
-        {constructorIngredients.map((ingredient, index) =>
+        {constructorIngredients.map((item, index) =>
           <ConstructorElem 
-          key={uuidv4()}
+          key={item._id}
           index={index}
-          item={ingredient}
+          item={item}
           handle={removeIngredient}/>)}
       </div>
       :

@@ -44,7 +44,7 @@ export const ConstructorButton = () => {
           <span>Оформить заказ</span>
           </Button>
           {isModalOpen &&
-            <Modal onClose={() => closeModal()}>
+            <Modal onClose={closeModal}>
               <OrderDetails />
             </Modal>
           }

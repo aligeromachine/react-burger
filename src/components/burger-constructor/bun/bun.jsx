@@ -14,7 +14,7 @@ export const Bun = ({ type }) => {
 		collect: monitor => ({
 			isHover: monitor.isOver()
 		}),
-		drop(payload) {dispatch(bunAdd(payload))},
+		drop(payload) {dispatch(bunAdd(payload));},
 	});
 
 	return (

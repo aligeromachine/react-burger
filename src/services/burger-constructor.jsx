@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   constructorBun: null,
@@ -14,11 +15,10 @@ export const burgerConstructor = createSlice({
       state.constructorBun = action.payload;
     },
     ingredientsAdd: (state, action) => {      
-      state.constructorIngredients = [...state.constructorIngredients, action.payload];
+      state.constructorIngredients = [...state.constructorIngredients, { ...action.payload, uniqueId: uuidv4() }];
     },
     ingredientsDel: (state, action) => {
-      console.log(action.payload);
-      state.constructorIngredients = state.constructorIngredients.filter((it) => it.idx !== action.payload.idx);
+      state.constructorIngredients = state.constructorIngredients.filter((it) => it.uniqueId !== action.payload.uniqueId);
     },
     calcPrice: (state) => {
       const bunPrice = (state.constructorBun ? state.constructorBun.price * 2 : 0);
