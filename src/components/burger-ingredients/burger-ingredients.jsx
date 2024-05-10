@@ -13,28 +13,43 @@ import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import { Modal } from '../modal/modal';
 import { useDrag } from 'react-dnd';
 import { IngredientModel } from '../../utils/loaddata';
+import {useInView} from 'react-intersection-observer';
 
 export const BurgerIngredients = () => {
-	const tabs =  [
-		{ id: 1, name: 'Булки', type: 'bun', ref: React.useRef(null) },
-		{ id: 2, name: 'Соусы', type: 'sauce', ref: React.useRef(null) },
-		{ id: 3, name: 'Начинки', type: 'main', ref: React.useRef(null) },
-	]
-	// По заданию нужно сделать логику переключения табов, когда идет скролл ингредиентов в списке слева. 
-	// Это сделать можно с помощью библиотеки react-intersection-observer
-	// A я это сделал с помощью reduce
 	const [curTab, setCurTab] = React.useState('bun');
-	const onScroll = (e) => {
-    const top = e.target.getBoundingClientRect().top;
-		const distances = tabs.map(p => {
-			return {
-				name: p.type, 
-				delta: Math.abs(p.ref.current.getBoundingClientRect().top - top),
-			}
-		});
-		const tmp = distances.reduce((acc, item) => acc.delta < item.delta ? acc : item, {});
-		if (tmp) if (tmp.name !== curTab) setCurTab(tmp.name);
-	}
+	const [bunRef, bunInView] = useInView({
+    threshold: 0.1
+  });
+  const [sauceRef, sauceInView] = useInView({
+    threshold: 0.1
+  });
+  const [mainRef, mainInView] = useInView({
+    threshold: 0.1
+  });
+	const tabs =  [
+		{ id: 1, name: 'Булки', type: 'bun', ref: bunRef },
+		{ id: 2, name: 'Соусы', type: 'sauce', ref: sauceRef },
+		{ id: 3, name: 'Начинки', type: 'main', ref: mainRef },
+	]
+	const handleIngredientScroll = () => {
+    switch (true) {
+      case bunInView:
+        setCurTab('bun');
+        break;
+      case sauceInView:
+        setCurTab('sauce');
+        break;
+      case mainInView:
+        setCurTab('main');
+        break;
+      default:
+        break;
+    }
+  };
+	React.useEffect(() => {
+    handleIngredientScroll();
+  }, [bunInView, sauceInView, mainInView]);
+	
 	const onTabClick = (value) => {
     setCurTab(value);
     const elem = tabs.find(p => p.type === value);
@@ -70,7 +85,7 @@ export const BurgerIngredients = () => {
 					</Tab>)}
 				</div>
 				
-				<div className={st.ingredients} onScroll={onScroll}>
+				<div className={st.ingredients} onScroll={handleIngredientScroll}>
 					{tabs.map((tab) => (
 						<div key={tab.id} className={st.ingredientBlock}>
 							<h2 className={`${st.headerTitle} `} ref={tab.ref}>
