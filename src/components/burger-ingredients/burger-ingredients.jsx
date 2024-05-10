@@ -35,12 +35,8 @@ export const BurgerIngredients = () => {
 		const tmp = distances.reduce((acc, item) => acc.delta < item.delta ? acc : item, {});
 		if (tmp) if (tmp.name !== curTab) setCurTab(tmp.name);
 	}
-	const TabClick = (value) => {
+	const onTabClick = (value) => {
     setCurTab(value);
-    scrollMove(value);
-  };
-
-	const scrollMove = (value) => {
     const elem = tabs.find(p => p.type === value);
     if (!elem) return;    
     const ref = elem.ref;    
@@ -69,7 +65,7 @@ export const BurgerIngredients = () => {
 					<Tab 
 					key={tab.id} 
 					active={tab.type === curTab} 
-					onClick={() => TabClick(tab.type)}>
+					onClick={() => onTabClick(tab.type)}>
 						{tab.name}
 					</Tab>)}
 				</div>
