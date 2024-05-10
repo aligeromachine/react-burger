@@ -15,26 +15,25 @@ import { useDrag } from 'react-dnd';
 import { IngredientModel } from '../../utils/loaddata';
 
 export const BurgerIngredients = () => {
-	const refMain = React.useRef(null);
 	const tabs =  [
 		{ id: 1, name: 'Булки', type: 'bun', ref: React.useRef(null) },
 		{ id: 2, name: 'Соусы', type: 'sauce', ref: React.useRef(null) },
 		{ id: 3, name: 'Начинки', type: 'main', ref: React.useRef(null) },
 	]
-
+	// По заданию нужно сделать логику переключения табов, когда идет скролл ингредиентов в списке слева. 
+	// Это сделать можно с помощью библиотеки react-intersection-observer
+	// A я это сделал с помощью reduce
 	const [curTab, setCurTab] = React.useState('bun');
-
-	const scrollHandle = () => {
-		const mainRect = refMain.current.getBoundingClientRect();
-		const type = tabs.sort((a, b) => {
-			const r1 = a.ref.current.getBoundingClientRect();
-			const r2 = b.ref.current.getBoundingClientRect();
-			const d1 = Math.abs(mainRect.bottom - r1.top);
-			const d2 = Math.abs(mainRect.bottom - r2.top);
-			return d1 > d2;           
-		})[0].type;
-
-		setCurTab(type);       
+	const onScroll = (e) => {
+    const top = e.target.getBoundingClientRect().top;
+		const distances = tabs.map(p => {
+			return {
+				name: p.type, 
+				delta: Math.abs(p.ref.current.getBoundingClientRect().top - top),
+			}
+		});
+		const tmp = distances.reduce((acc, item) => acc.delta < item.delta ? acc : item, {});
+		if (tmp) if (tmp.name !== curTab) setCurTab(tmp.name);
 	}
 	const TabClick = (value) => {
     setCurTab(value);
@@ -65,7 +64,7 @@ export const BurgerIngredients = () => {
 		<div className={`${st.flex}`}>
 			<div>
 				<h1 className={`${st.header} text_type_main-large`}>Соберите бургер</h1>
-				<div className={`${st.flex}`} ref={refMain}>
+				<div className={`${st.flex}`} >
 					{tabs.map((tab) => 
 					<Tab 
 					key={tab.id} 
@@ -75,7 +74,7 @@ export const BurgerIngredients = () => {
 					</Tab>)}
 				</div>
 				
-				<div className={st.ingredients} onScroll={scrollHandle}>
+				<div className={st.ingredients} onScroll={onScroll}>
 					{tabs.map((tab) => (
 						<div key={tab.id} className={st.ingredientBlock}>
 							<h2 className={`${st.headerTitle} `} ref={tab.ref}>

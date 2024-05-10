@@ -14,9 +14,13 @@ export const burgerConstructor = createSlice({
     bunAdd: (state, action) => {
       state.constructorBun = action.payload;
     },
-    ingredientsAdd: (state, action) => {      
-      state.constructorIngredients = [...state.constructorIngredients, { ...action.payload, uniqueId: uuidv4() }];
-      state.constructorIngredients.map(elem => console.log(elem.uniqueId));
+    ingredientsAdd: {
+      reducer: (state, action) => {
+        state.constructorIngredients = [...state.constructorIngredients, action.payload];
+      },
+      prepare: (ingredient) => {
+        return { payload: { ...ingredient, uniqueId: uuidv4() } }
+      },
     },
     ingredientsDel: (state, action) => {
       state.constructorIngredients = state.constructorIngredients.filter((it) => it.uniqueId !== action.payload.uniqueId);
