@@ -13,43 +13,25 @@ import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import { Modal } from '../modal/modal';
 import { useDrag } from 'react-dnd';
 import { IngredientModel } from '../../utils/loaddata';
-import {useInView} from 'react-intersection-observer';
 
 export const BurgerIngredients = () => {
-	const [curTab, setCurTab] = React.useState('bun');
-	const [bunRef, bunInView] = useInView({
-    threshold: 0.1
-  });
-  const [sauceRef, sauceInView] = useInView({
-    threshold: 0.1
-  });
-  const [mainRef, mainInView] = useInView({
-    threshold: 0.1
-  });
 	const tabs =  [
-		{ id: 1, name: 'Булки', type: 'bun', ref: bunRef },
-		{ id: 2, name: 'Соусы', type: 'sauce', ref: sauceRef },
-		{ id: 3, name: 'Начинки', type: 'main', ref: mainRef },
+		{ id: 1, name: 'Булки', type: 'bun', ref: React.useRef(null) },
+		{ id: 2, name: 'Соусы', type: 'sauce', ref: React.useRef(null) },
+		{ id: 3, name: 'Начинки', type: 'main', ref: React.useRef(null) },
 	]
-	const handleIngredientScroll = () => {
-    switch (true) {
-      case bunInView:
-        setCurTab('bun');
-        break;
-      case sauceInView:
-        setCurTab('sauce');
-        break;
-      case mainInView:
-        setCurTab('main');
-        break;
-      default:
-        break;
-    }
-  };
-	React.useEffect(() => {
-    handleIngredientScroll();
-  }, [bunInView, sauceInView, mainInView]);
-	
+	const [curTab, setCurTab] = React.useState('bun');
+	const onScroll = (e) => {
+    const top = e.target.getBoundingClientRect().top;
+		const distances = tabs.map(p => {
+			return {
+				name: p.type, 
+				delta: Math.abs(p.ref.current.getBoundingClientRect().top - top),
+			}
+		});
+		const tmp = distances.reduce((acc, item) => acc.delta < item.delta ? acc : item, {});
+		if (tmp) if (tmp.name !== curTab) setCurTab(tmp.name);
+	}
 	const onTabClick = (value) => {
     setCurTab(value);
     const elem = tabs.find(p => p.type === value);
@@ -85,7 +67,7 @@ export const BurgerIngredients = () => {
 					</Tab>)}
 				</div>
 				
-				<div className={st.ingredients} onScroll={handleIngredientScroll}>
+				<div className={st.ingredients} onScroll={onScroll}>
 					{tabs.map((tab) => (
 						<div key={tab.id} className={st.ingredientBlock}>
 							<h2 className={`${st.headerTitle} `} ref={tab.ref}>
