@@ -1,15 +1,4 @@
-.ingredients {
-  overflow-y: scroll;
-  height: 70vh;
-  border: 0px solid #ccc;
-}
-
-.header {
-  margin: 30px 0;
-  border: 0px solid #ccc;
-}
-
-.tabList {
+.flex {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -18,14 +7,24 @@
   border: 0px solid #ccc;
 }
 
-.headerTitle {
-  margin: 20px 0;
+.header {
   text-align: left;
+  margin: 30px 0;
+}
+
+.ingredients {
+  overflow-y: scroll;
+  height: 70vh;
   border: 0px solid #ccc;
 }
 
-.Container {
+.ingredientBlock {
   margin: 50px 0;
+}
+
+.headerTitle {
+  margin: 20px 0;
+  text-align: left;
   border: 0px solid #ccc;
 }
 
@@ -46,15 +45,16 @@
   border: 0px solid #58b461;
 }
 
-.ingredientBlock {
+.ingredientImage {
+  display: flex;
+  position: relative;
+}
+
+.ingredientPrice {
   display: flex;
   flex-flow: row;
   justify-content: center;
   align-items: center;
   margin: auto;
   column-gap: 10px;
-}
-
-.modalContainer {
-  overflow: hidden;
 }

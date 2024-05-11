@@ -1,12 +1,9 @@
-.flex {
+.button {
   display: flex;
-	flex-flow: row;
+  flex-flow: row;
   justify-content: center;
   align-items: center;
   margin: auto;
-  border: 0px solid #ccc;
-}
-
-.elem {
-  width: 600px;
+  column-gap: 20px;
+  border: 0px solid #ccc;  
 }

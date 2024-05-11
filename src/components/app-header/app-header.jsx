@@ -9,7 +9,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
-export default function AppHeader() {
+export const AppHeader = () => {
   return (
     <header className={st.header}>
       <nav className={st.container}>

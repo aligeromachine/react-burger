@@ -17,3 +17,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.on-hover {
+  outline: 4px dotted var(--text-inactive-color);
+  background-color: rgb(114, 78, 137);
+}
