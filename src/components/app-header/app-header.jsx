@@ -7,6 +7,7 @@ import {
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import HeaderButton from './header-button/header-button';
+import { NavLink } from 'react-router-dom';
 
 export const AppHeader = () => {
   return (
@@ -24,7 +25,11 @@ export const AppHeader = () => {
         />
 
         <div className={st.logo}>
-          <Logo />
+
+          <NavLink to={"/"} >
+            <Logo />
+          </NavLink>
+          
         </div>
 
         <HeaderButton
