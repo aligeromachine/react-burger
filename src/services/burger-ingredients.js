@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import { getIngredients } from "../api/requests";
+import { getIngredients } from "../utils/requests";
 
 const initialState = {
   ingredients: [],
   loading: 'loading',
 };
 
-export const fetchIngredients = createAsyncThunk(
-  'burgerIngredients/fetchIngredients', 
+export const getIngredientsThunk = createAsyncThunk(
+  'burgerIngredients/getIngredientsThunk', 
   async () => {
     const response = await getIngredients();
     return response.data;
@@ -20,14 +20,14 @@ export const burgerIngredients = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(fetchIngredients.pending, (state) => {
+    .addCase(getIngredientsThunk.pending, (state) => {
       state.loading = 'loading';
     })
-    .addCase(fetchIngredients.fulfilled, (state, action) => {
+    .addCase(getIngredientsThunk.fulfilled, (state, action) => {
       state.ingredients = action.payload;
       state.loading = 'idle';
     })
-    .addCase(fetchIngredients.rejected, (state) => {
+    .addCase(getIngredientsThunk.rejected, (state) => {
       state.loading = 'failed';
     })
   }

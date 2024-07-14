@@ -5,15 +5,17 @@ import {
   Button 
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { calcPrice } from '../../../services/burger-constructor';
-import { createOrder } from '../../../services/order-details';
+import { calcPrice, resetIngredients } from '../../../services/burger-constructor';
+import { createOrderThunk } from '../../../services/order-details';
 import { useModal } from '../../../hooks/useModal';
 import { OrderDetails } from '../../order-details/order-details';
 import { Modal } from '../../modal/modal';
 import { Preloader } from '../../preloader/preloader';
+import { useNavigate } from "react-router";
 
 export const ConstructorButton = () => {
 	const dispatch = useDispatch();
+  const navigate = useNavigate();
 	const { 
 			constructorBun, 
 			constructorIngredients, 
@@ -25,13 +27,22 @@ export const ConstructorButton = () => {
 		dispatch(calcPrice());
 	}, [dispatch, constructorBun, constructorIngredients]);
 
+  const { user } = useSelector((store) => store.user);
+
 	const handleOrder = () => {
+    if (!user) return navigate("/login");
+
     const order = [...constructorIngredients, constructorBun];
-		dispatch(createOrder(order));
+		dispatch(createOrderThunk(order));
     openModal();
 	};
 
   const { isModalOpen, openModal, closeModal } = useModal();
+  
+  const handleCloseOrder = () => {
+    dispatch(resetIngredients());
+    closeModal();
+  };
 
 	return (
 		<div className={`${st.button} mt-6`}>
@@ -46,7 +57,7 @@ export const ConstructorButton = () => {
         <span>Оформить заказ</span>
         </Button>
         {isModalOpen &&
-          <Modal onClose={closeModal}>
+          <Modal onClose={handleCloseOrder}>
             <Preloader isLoading={loading !== 'idle' }/>
             <OrderDetails />
           </Modal>

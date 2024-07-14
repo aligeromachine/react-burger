@@ -1,0 +1,10 @@
+.profileTabs {
+  max-width: 320px;
+}
+
+.tabsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-left: 5em;
+}

@@ -1,0 +1,8 @@
+.btn {
+  background-color: transparent;
+  border: none;
+  color: var(--text-inactive-color);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
