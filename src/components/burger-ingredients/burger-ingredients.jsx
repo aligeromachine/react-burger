@@ -6,13 +6,10 @@ import {
 	Tab, 
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { useModal } from '../../hooks/useModal';
-import { setSelectedIngredient } from '../../services/ingredient-details';
-import { IngredientDetails } from '../ingredient-details/ingredient-details';
-import { Modal } from '../modal/modal';
+import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { IngredientModel } from '../../utils/loaddata';
+import { Link, useLocation } from "react-router-dom";
 
 export const BurgerIngredients = () => {
 	const tabs =  [
@@ -41,17 +38,8 @@ export const BurgerIngredients = () => {
     ref.current.scrollIntoView({behavior: 'smooth', block: 'start'});
   };
 
-	const dispatch = useDispatch();
 	const { ingredients } = useSelector(store => store.burgerIngredients);
 	const { constructorBun, constructorIngredients } = useSelector(store => store.burgerConstructor);
-	const { selectedIngredient } = useSelector(store => store.ingredientDetails);
-
-	const { isModalOpen, openModal, closeModal } = useModal();
-
-	const setCurrentItem = (item) => {
-		dispatch(setSelectedIngredient(item));
-		openModal();
-	}
 
 	return(
 		<div className={`${st.flex}`}>
@@ -81,24 +69,19 @@ export const BurgerIngredients = () => {
 									count={ it.type === 'bun'
 									? (constructorBun && constructorBun._id === it._id ? 2 : 0)
 									: (constructorIngredients.filter(x => x._id === it._id).length)}
-									handle={setCurrentItem} />
+									/>
 								))}
 							</div>
 						</div>
 					))}
-
-					{isModalOpen && 
-					(<Modal onClose={closeModal}>
-							<IngredientDetails info={selectedIngredient} />
-					</Modal>)
-					}
+					
 				</div>
 			</div>
 		</div>
 	);
 }
 
-const IngredientItem = ({ item, count, handle }) => {
+const IngredientItem = ({ item, count }) => {
 	const [{ opacity }, ref] = useDrag({
 		type: item.type === 'bun' ? 'bun' : 'notbun',
 		item: item,
@@ -107,23 +90,30 @@ const IngredientItem = ({ item, count, handle }) => {
 		})
 	});
 
+	const location = useLocation();
+
 	return (
 		<div key={item._id} 
 		className={`${st.ingredientItem}`} 
-		onClick={() => handle(item)}
 		ref={ref}
 		style={{opacity}}>
-			<div className={st.ingredientImage}>
-				<img 
-				src={item.image} 
-				alt={"Изображение ингредиента"} />
-				{count > 0 && <Counter count={count}/>}
-			</div>
-			<div className={st.ingredientPrice}>
-				<span className="text_type_main-medium">{item.price}</span>
-				<CurrencyIcon type="primary"/>
-			</div>
-			<span className="text_type_main-default">{item.name}</span>
+			<Link
+				to={`/ingredients/${item._id}`}
+				state={{ background: location }} >
+
+				<div className={st.ingredientImage}>
+					<img 
+					src={item.image} 
+					alt={"Изображение ингредиента"} />
+					{count > 0 && <Counter count={count}/>}
+				</div>
+				<div className={st.ingredientPrice}>
+					<span className="text_type_main-medium">{item.price}</span>
+					<CurrencyIcon type="primary"/>
+				</div>
+				<span className="text_type_main-default">{item.name}</span>
+
+			</Link>
 		</div>
 	)
 };
@@ -131,5 +121,4 @@ const IngredientItem = ({ item, count, handle }) => {
 IngredientItem.propTypes = {
 	item: IngredientModel.isRequired,
 	count: PropTypes.number.isRequired,
-	handle: PropTypes.func.isRequired
 };

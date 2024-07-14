@@ -35,7 +35,11 @@ export const burgerConstructor = createSlice({
       const tmp = state.constructorIngredients[x];
       state.constructorIngredients = state.constructorIngredients.filter((_, index) => index !== x);
       state.constructorIngredients.splice(y, 0, tmp);
-    }
+    },
+    resetIngredients: (state, ) => {
+      state.constructorBun = null;
+      state.constructorIngredients = [];
+    },
   }
 });
 
@@ -44,5 +48,7 @@ export const {
   ingredientsAdd, 
   ingredientsDel, 
   calcPrice, 
-  moveCard} = burgerConstructor.actions;
+  moveCard,
+  resetIngredients,
+} = burgerConstructor.actions;
 export default burgerConstructor.reducer;

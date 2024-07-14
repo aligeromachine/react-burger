@@ -5,8 +5,9 @@
   align-items: center;
   margin: auto;
   border: 0px solid #ccc;
-  margin: 40px 0;
   width: 720px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .infoImage {

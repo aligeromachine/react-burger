@@ -1,0 +1,14 @@
+.nameBtn {
+  font-size: larger;
+  margin-left: 10px;
+}
+
+.link {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  color: unset;
+  text-decoration: none;
+  cursor: pointer;
+}
