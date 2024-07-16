@@ -1,21 +1,25 @@
-import React from "react";
+import React, { FC, ReactElement } from "react";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { createPortal } from "react-dom";
 import st from "./modal.module.css";
-import PropTypes from "prop-types";
 
-const ModalOverlay = ({ onClick, overlay }) => {
+type TModalOverlayProps = {
+  onClick: () => void;
+  overlay?: string;
+}
+
+const ModalOverlay: FC<TModalOverlayProps> = ({ onClick, overlay }) => {
   return <div className={overlay} onClick={onClick}></div>;
 }
 
-ModalOverlay.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  overlay: PropTypes.string.isRequired,
-};
+type TModalProps = {
+  onClose: () => void;
+  children?: ReactElement[] | ReactElement;
+}
 
-export const Modal = ({ onClose, children }) => {
+export const Modal: FC<TModalProps> =  ({ onClose, children }) => {
   React.useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
       }
@@ -24,24 +28,17 @@ export const Modal = ({ onClose, children }) => {
     return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
-  const modalRoot = document.getElementById("modals");
-
   return createPortal(
     <div>
       <div className={st.modal}>
         <button className={st.close_button} onClick={onClose}>
-          <CloseIcon />
+          <CloseIcon onClick={onClose} type="primary" />
         </button>
         {children}
       </div>
       <ModalOverlay overlay={st.overlay} onClick={() => onClose()} />
     </div>,
-    modalRoot
+    document.getElementById("modals") as HTMLElement
   );
-
 }
 
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-};

@@ -6,7 +6,7 @@ import {
   Logo,
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import HeaderButton from './header-button/header-button';
+import { HeaderButton } from './header-button/header-button';
 import { NavLink } from 'react-router-dom';
 
 export const AppHeader = () => {

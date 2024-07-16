@@ -4,6 +4,7 @@ import burgerConstructor from "./burger-constructor";
 import ingredientDetails from "./ingredient-details";
 import orderDetails from "./order-details";
 import user from "./auth-user";
+import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,10 @@ export const store = configureStore({
     orderDetails,
     user,
   },
-  devTools: true,
-  applyMiddleware: (middleware) => middleware(),
 });
+
+type AppDispatch = typeof store.dispatch;
+type RootState = ReturnType<typeof store.getState>;
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

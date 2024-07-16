@@ -1,12 +1,17 @@
-import React from "react";
+import React, { FC, ElementType } from "react";
 import { NavLink } from "react-router-dom";
 import st from "./header-button.module.css";
-import PropTypes from "prop-types";
 import {
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-const HeaderButton = ({ link, icon: Icon, text }) => {
+type THeaderButtonProps = {
+  link: string;
+  icon: ElementType;
+  text: string;  
+};
+
+export const HeaderButton: FC<THeaderButtonProps> = ({ link, icon: Icon, text }) => {
   return (
     <NavLink to={link} className={`${st.link} pt-4 pr-5 pb-4 pl-5`}>
       {({isActive}) => (
@@ -21,10 +26,3 @@ const HeaderButton = ({ link, icon: Icon, text }) => {
   );
 };
 
-HeaderButton.propTypes = {
-  link: PropTypes.string.isRequired,
-  icon: PropTypes.elementType.isRequired,
-  text: PropTypes.string.isRequired,
-};
-
-export default HeaderButton;

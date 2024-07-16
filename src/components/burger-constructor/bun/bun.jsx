@@ -5,7 +5,7 @@ import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-comp
 import { useDrop } from 'react-dnd';
 import { bunAdd } from '../../../services/burger-constructor';
 
-export const Bun = ({ type }) => {
+export const Bun = ({ position }) => {
 	const dispatch = useDispatch();
 	const { constructorBun } = useSelector(store => store.burgerConstructor);
 	
@@ -21,14 +21,15 @@ export const Bun = ({ type }) => {
 		<div ref={dropTarget}>
 			{constructorBun
 			? <ConstructorElement
-				type={type}
+				type={position}
 				isLocked={true}
-				text={`${constructorBun.name} ${type === 'top' ? '(верх)' : '(низ)'}`}
+				text={`${constructorBun.name} ${position === 'top' ? '(верх)' : '(низ)'}`}
 				thumbnail={constructorBun.image_mobile}
 				price={constructorBun.price}
 				extraClass='ml-8 mb-4' />
 			:
-			<div className={`constructor-element ml-8 mb-4 constructor-element_pos_${type} ${isHover ? 'on-hover': ''}`}>
+			<div 
+			className={`constructor-element ml-8 mb-4 constructor-element_pos_${position} ${isHover ? 'on-hover': ''}`}>
 				<span className="constructor-element__text mt-4" style={{fontSize: 'larger'}}>Выберите булки</span>
 			</div>
 			}
@@ -37,5 +38,5 @@ export const Bun = ({ type }) => {
 }
 
 Bun.propTypes = {
-  type: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
 };
