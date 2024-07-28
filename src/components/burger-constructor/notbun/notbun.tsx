@@ -8,9 +8,10 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ingredientsAdd, moveCard, ingredientsDel } from '../../../services/burger-constructor';
 import { useAppDispatch, useAppSelector } from '../../../services/store';
 import { IIngredientsExtId } from '../../../interfaces/ingredient-inner';
+import { IIngredient } from '../../../interfaces/ingredient-response';
 
 interface IDragObjectNotBun {
-	ingredient: IIngredientsExtId;
+	ingredient: IIngredient;
 	index: number;
 }
 

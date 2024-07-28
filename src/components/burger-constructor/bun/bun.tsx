@@ -9,11 +9,6 @@ interface IBunProps {
   position: "top" | "bottom";
 }
 
-interface IDragObjectBun {
-	ingredient: IIngredientsExtId;
-	index: number;
-}
-
 interface ICollectedProps {
 	isHover: boolean;
 }
@@ -24,12 +19,12 @@ export const Bun: React.FC<IBunProps> = ({ position })
 	const dispatch = useAppDispatch();
 	const { constructorBun } = useAppSelector(store => store.burgerConstructor);
 	
-	const [{ isHover }, dropTarget] = useDrop<IDragObjectBun, unknown, ICollectedProps>({
+	const [{ isHover }, dropTarget] = useDrop<IIngredientsExtId, unknown, ICollectedProps>({
 		accept: 'bun',
 		collect: monitor => ({
 			isHover: monitor.isOver()
 		}),
-		drop(payload) {dispatch(bunAdd(payload.ingredient));},
+		drop(payload) {dispatch(bunAdd(payload));},
 	});
 
 	return (
