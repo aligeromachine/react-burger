@@ -85,7 +85,7 @@ export const refreshToken = async (): Promise<IResponseRefreshToken> => {
 
 export const fetchWithRefresh = async (url: string, options: IRequestsInit)
 : Promise<IResponseUserCheck> => {
-
+  
   try {
     const res = await fetch(url, options);
     return await checkResponse<IResponseUserCheck>(res);

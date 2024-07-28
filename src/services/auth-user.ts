@@ -91,16 +91,20 @@ export const userLogoutThunk = createAsyncThunk<IResponseUserLogout, void, Async
     return response;
 });
 
-export const userAuthThunk = createAsyncThunk<IResponseUserCheck, void, AsyncThunkConfig>(
+export const userAuthThunk = createAsyncThunk<IResponseUserCheck | null, void, AsyncThunkConfig>(
   'user/userAuthThunk', 
   async () => {
 
-    const options: IRequestsInit = baseoptions;
-    options.method = "POST";
-    options.headers.authorization = localStorage.getItem("accessToken") || "";
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+        authorization: localStorage.getItem("accessToken") || "",
+      }
+    }
 
     const response = await fetchWithRefresh(`${URL}/auth/user`, options);
-    
+
     return response;
 });
 
@@ -109,10 +113,9 @@ export const userEditThunk = createAsyncThunk<IResponseUserCheck, IResponseUserR
   async (data) => {
 
     const options: IRequestsInit = baseoptions;
-    options.method = "POST";
+    options.method = "PATCH";
     options.headers.authorization = localStorage.getItem("accessToken") || "";
     options.body = objToStr(data);
-
 
     const response = await fetchWithRefresh(`${URL}/auth/user`, options);
     
@@ -164,9 +167,11 @@ export const user = createSlice({
     .addCase(userAuthThunk.pending, (state: IAuthState) =>{
       state.loading = 'loading';
     })
-    .addCase(userAuthThunk.fulfilled, (state: IAuthState, action: PayloadAction<IResponseUserCheck>) => {
-      state.user = action.payload.user;
-      state.loading = 'succeeded';
+    .addCase(userAuthThunk.fulfilled, (state: IAuthState, action: PayloadAction<IResponseUserCheck | null>) => {
+      if (action.payload) {
+        state.user = action.payload.user;
+        state.loading = 'succeeded';
+      }
     })
     .addCase(userAuthThunk.rejected, (state: IAuthState) =>{
       state.loading = 'failed';

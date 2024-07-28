@@ -11,8 +11,8 @@ export const MainRequests: React.FC = ()
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getIngredientsThunk());
     dispatch(userAuthThunk());
+    dispatch(getIngredientsThunk());    
   }, [dispatch]);
 
   const user = useAppSelector((store) => store.user.loading) !== 'succeeded';
