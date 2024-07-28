@@ -3,21 +3,21 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { createPortal } from "react-dom";
 import st from "./modal.module.css";
 
-type TModalOverlayProps = {
+interface IModalOverlayProps {
   onClick: () => void;
   overlay?: string;
 }
 
-const ModalOverlay: FC<TModalOverlayProps> = ({ onClick, overlay }) => {
+const ModalOverlay: FC<IModalOverlayProps> = ({ onClick, overlay }) => {
   return <div className={overlay} onClick={onClick}></div>;
 }
 
-type TModalProps = {
+interface IModalProps {
   onClose: () => void;
   children?: ReactElement[] | ReactElement;
 }
 
-export const Modal: FC<TModalProps> =  ({ onClose, children }) => {
+export const Modal: FC<IModalProps> =  ({ onClose, children }) => {
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
