@@ -9,8 +9,7 @@ interface IElementTextProp {
   value: number | undefined;
 }
 
-const ElementText: React.FC<IElementTextProp> = ({name, value = ""})
-: React.JSX.Element => {
+const ElementText = ({name, value = 0}: IElementTextProp) => {
   
   return (
     <div>
@@ -20,8 +19,7 @@ const ElementText: React.FC<IElementTextProp> = ({name, value = ""})
   );
 }
 
-export const IngredientDetails: React.FC = ()
-: React.JSX.Element => {
+export const IngredientDetails = () => {
 
   const { id } = useParams();
   const dispatch = useAppDispatch();

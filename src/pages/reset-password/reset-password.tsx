@@ -16,8 +16,7 @@ interface IResetPassword {
   password: string;
 }
 
-export const ResetPassword: React.FC = ()
-: React.JSX.Element => {
+export const ResetPassword = () => {
 
   const { form, onChange } = useForm<IResetPassword>({ token: "", password: "" });
   const navigate = useNavigate();

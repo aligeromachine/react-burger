@@ -16,8 +16,7 @@ interface ILogin {
   password: string;
 }
 
-export const Login: React.FC = ()
-: React.JSX.Element => {
+export const Login = () => {
   
   const { form, onChange } = useForm<ILogin>({
     email: "",

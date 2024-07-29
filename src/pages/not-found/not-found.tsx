@@ -2,8 +2,7 @@
 import React from 'react';
 import st from './not-found.module.css';
 
-export const NotFound: React.FC = () 
-: React.JSX.Element => {
+export const NotFound = () => {
   
   return (
     <div className={st.notFound}>

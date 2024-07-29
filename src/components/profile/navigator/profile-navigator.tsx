@@ -3,8 +3,7 @@ import st from "./profile-navigator.module.css";
 import { ProfileItem } from "../item/profile-item";
 import { v4 as uuidv4 } from "uuid";
 
-export const ProfileNavigator: React.FC = ()
-: React.JSX.Element => {
+export const ProfileNavigator = () => {
   
   const profileTabs = [
     { name: "Профиль", route: "/profile" },

@@ -5,10 +5,10 @@ interface IFormProp {
   title: string;
   // eslint-disable-next-line no-unused-vars
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => null;
+  children?: React.ReactElement[] | React.ReactElement;
 }
 
-export const Form: React.FC<React.PropsWithChildren<IFormProp>> = ({ children, title, onSubmit })
-: React.JSX.Element => {
+export const Form = ({ title, onSubmit, children }: IFormProp) => {
   
   return (
     <section>

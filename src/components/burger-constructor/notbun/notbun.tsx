@@ -19,8 +19,7 @@ interface ICollectedProps {
 	isHover: boolean;
 }
 
-export const NotBun: React.FC = ()
-: React.JSX.Element => {
+export const NotBun = () => {
   
   const dispatch = useAppDispatch();
   const { constructorIngredients } = useAppSelector(store => store.burgerConstructor);
@@ -62,7 +61,7 @@ interface INotBunProps {
   removeIngredient: (item: IIngredientsExtId) => void;
 }
 
-const ConstructorElem: React.FC<INotBunProps> = ({ item, index, removeIngredient })
+const ConstructorElem = ({ item, index, removeIngredient }: INotBunProps)
 : React.JSX.Element  => {
   
   const handleClick = () => removeIngredient(item);

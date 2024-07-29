@@ -10,8 +10,7 @@ interface IProfileItemProp {
   className: string;
 }
 
-export const ProfileItem: React.FC<IProfileItemProp> = ({ route, text, className })
-: React.JSX.Element => {
+export const ProfileItem = ({ route, text, className }: IProfileItemProp) => {
   
   const location = useLocation();
   const dispatch = useAppDispatch();

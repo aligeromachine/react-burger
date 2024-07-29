@@ -16,8 +16,7 @@ interface IProfileInfo {
   password?: string;
 }
 
-export const ProfileInfo: React.FC = ()
-: React.JSX.Element => {
+export const ProfileInfo = () => {
 
   const { form, setForm, onChange, onSet } = useForm<IProfileInfo>({
     name: "",
@@ -61,7 +60,7 @@ export const ProfileInfo: React.FC = ()
         size={"default"}
         extraClass="mb-6"
         autoComplete="name" 
-        onPointerEnterCapture={undefined} 
+        onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}      
         />
       <EmailInput

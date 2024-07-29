@@ -7,13 +7,12 @@ interface IProtectedProps {
   guard?: boolean;
 }
 
-const Protected: React.FC<IProtectedProps> = ({ inner, guard = false })
-: React.JSX.Element => {
+const Protected = ({ inner, guard = false }: IProtectedProps) => {
   
   const { loading, user } = useAppSelector((store) => store.user);
   const location = useLocation();
 
-  if (loading === 'loading') return <></>;
+  if (loading === 'loading') return null;
 
   if (user.name !== "" && !guard) {
     return <Navigate to={location.state} replace />;

@@ -13,8 +13,7 @@ interface ICollectedProps {
 	isHover: boolean;
 }
 
-export const Bun: React.FC<IBunProps> = ({ position })
-: React.JSX.Element => {
+export const Bun = ({ position }: IBunProps) => {
 	
 	const dispatch = useAppDispatch();
 	const { constructorBun } = useAppSelector(store => store.burgerConstructor);

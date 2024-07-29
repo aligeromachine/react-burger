@@ -17,8 +17,7 @@ interface IRegister {
   password: string;
 }
 
-export const Register: React.FC = ()
-: React.JSX.Element => {
+export const Register = () => {
 
   const { form, onChange, onSet } = useForm<IRegister>({
     name: "",

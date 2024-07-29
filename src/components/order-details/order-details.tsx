@@ -3,8 +3,7 @@ import st from './order-details.module.css';
 import orderApprove from '../../images/done.jpg';
 import { useAppSelector } from '../../services/store';
 
-export const OrderDetails: React.FC = ()
-: React.JSX.Element => {
+export const OrderDetails = () => {
 	
 	const { orderData } = useAppSelector(store => store.orderDetails);
 

@@ -16,8 +16,7 @@ import { ProfileLayout } from '../../pages/profile-layout/profile-layout';
 import { ProfileOrders } from '../../pages/profile-orders/profile-orders';
 import { ProfileInfo } from '../../pages/profile-info/profile-info';
 
-export const App: React.FC = ()
-: React.JSX.Element => {
+export const App = () => {
 
   const navigate = useNavigate();
   const location = useLocation();

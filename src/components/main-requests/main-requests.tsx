@@ -5,8 +5,7 @@ import { getIngredientsThunk } from '../../services/burger-ingredients';
 import { Preloader } from "../preloader/preloader";
 import { useAppDispatch, useAppSelector } from '../../services/store';
 
-export const MainRequests: React.FC = ()
-: React.JSX.Element => {
+export const MainRequests = () => {
 
   const dispatch = useAppDispatch();
 

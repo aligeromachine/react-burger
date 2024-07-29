@@ -14,8 +14,7 @@ interface IForgotPassword {
   email: string;
 }
 
-export const ForgotPassword: React.FC = () 
-: React.JSX.Element => {
+export const ForgotPassword = () => {
   
   const { form, onChange } = useForm<IForgotPassword>({email: ""});
   const navigate = useNavigate();

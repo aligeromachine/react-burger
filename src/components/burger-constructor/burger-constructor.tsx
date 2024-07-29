@@ -4,8 +4,7 @@ import { Bun } from './bun/bun';
 import { NotBun } from './notbun/notbun';
 import { ConstructorButton } from './button/button';
 
-export const BurgerConstructor: React.FC = ()
-: React.JSX.Element => {
+export const BurgerConstructor = () => {
 
 	return(
 		<div className={st.flex}>

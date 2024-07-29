@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React from "react";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { createPortal } from "react-dom";
 import st from "./modal.module.css";
@@ -8,16 +8,16 @@ interface IModalOverlayProps {
   overlay?: string;
 }
 
-const ModalOverlay: FC<IModalOverlayProps> = ({ onClick, overlay }) => {
+const ModalOverlay = ({ onClick, overlay }: IModalOverlayProps) => {
   return <div className={overlay} onClick={onClick}></div>;
 }
 
 interface IModalProps {
   onClose: () => void;
-  children?: ReactElement[] | ReactElement;
+  children?: React.ReactElement[] | React.ReactElement;
 }
 
-export const Modal: FC<IModalProps> =  ({ onClose, children }) => {
+export const Modal =  ({ onClose, children }: IModalProps) => {
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {

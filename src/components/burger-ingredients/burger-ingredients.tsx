@@ -15,8 +15,7 @@ interface IAcc {
 	delta: number;
 }
 
-export const BurgerIngredients: React.FC = ()
-: React.JSX.Element => {
+export const BurgerIngredients = () => {
 
 	const tabs =  [
 		{ id: 1, name: 'Булки', type: 'bun', ref: React.useRef<HTMLDivElement>(null) },
@@ -95,8 +94,7 @@ interface IHIngredientItemProps {
   count: number;
 }
 
-const IngredientItem: React.FC<IHIngredientItemProps> = ({ item, count })
-: React.JSX.Element => {
+const IngredientItem = ({ item, count }: IHIngredientItemProps) => {
 	
 	const [{ opacity }, ref] = useDrag({
 		type: item.type === 'bun' ? 'bun' : 'notbun',

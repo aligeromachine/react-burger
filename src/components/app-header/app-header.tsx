@@ -9,8 +9,7 @@ import {
 import { HeaderButton } from './header-button/header-button';
 import { NavLink } from 'react-router-dom';
 
-export const AppHeader: React.FC = ()
-: React.JSX.Element => {
+export const AppHeader = () => {
   return (
     <header className={st.header}>
       <nav className={st.container}>

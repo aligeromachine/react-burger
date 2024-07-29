@@ -14,8 +14,7 @@ import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from '../../../services/store';
 import { IIngredientsExtId } from '../../../interfaces/ingredient-inner';
 
-export const ConstructorButton: React.FC = ()
-: React.JSX.Element => {
+export const ConstructorButton = () => {
   
 	const dispatch = useAppDispatch();
   const navigate = useNavigate();

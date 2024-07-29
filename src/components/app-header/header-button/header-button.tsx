@@ -11,8 +11,7 @@ interface IHeaderButtonProps {
   text: string;  
 }
 
-export const HeaderButton: React.FC<IHeaderButtonProps> = ({ link, icon: Icon, text })
-: React.JSX.Element => {
+export const HeaderButton = ({ link, icon: Icon, text }: IHeaderButtonProps) => {
   return (
     <NavLink to={link} className={`${st.link} pt-4 pr-5 pb-4 pl-5`}>
       {({isActive}) => (
