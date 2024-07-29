@@ -10,27 +10,18 @@ import { useAppDispatch, useAppSelector } from '../../../services/store';
 import { IIngredientsExtId } from '../../../interfaces/ingredient-inner';
 import { IIngredient } from '../../../interfaces/ingredient-response';
 
-interface IDragObjectNotBun {
-	ingredient: IIngredient;
-	index: number;
-}
-
-interface ICollectedProps {
-	isHover: boolean;
-}
-
 export const NotBun = () => {
   
   const dispatch = useAppDispatch();
   const { constructorIngredients } = useAppSelector(store => store.burgerConstructor);
   const removeIngredient = (item: IIngredientsExtId) => dispatch(ingredientsDel(item));
     
-  const [{ isHover }, dropTarget] = useDrop<IDragObjectNotBun, unknown, ICollectedProps> ({
+  const [{ isHover }, dropTarget] = useDrop<IIngredient, unknown, {isHover: boolean}> ({
     accept: 'notbun',
     collect: monitor => ({
       isHover: monitor.isOver()
     }),
-    drop(payload) {dispatch(ingredientsAdd(payload.ingredient));}, 
+    drop(payload) {dispatch(ingredientsAdd(payload));}, 
   });
 
   return (
@@ -68,7 +59,7 @@ const ConstructorElem = ({ item, index, removeIngredient }: INotBunProps)
   const dispatch = useAppDispatch();
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag<{index: number}, unknown, {isDragging: boolean}>({
     type: 'ConstructorElem',
     item: { index },
     collect: monitor => ({
@@ -76,7 +67,7 @@ const ConstructorElem = ({ item, index, removeIngredient }: INotBunProps)
     }),
   });
 
-  const [, drop] = useDrop<IDragObjectNotBun>({
+  const [, drop] = useDrop<{index: number}, unknown, {}>({
     accept: 'ConstructorElem',
     hover(item, monitor) {
       if (!ref.current) {
