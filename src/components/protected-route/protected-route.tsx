@@ -26,8 +26,7 @@ const Protected = ({ inner, guard = false }: IProtectedProps) => {
 }
 
 export const OnlyUnAuth = Protected;
-export const OnlyAuth: React.FC<IProtectedProps> = ({ inner })
-: React.JSX.Element => {
+export const OnlyAuth = ({ inner }: IProtectedProps) => {
   return <Protected guard={true} inner={inner} />;
 }
 
