@@ -9,7 +9,6 @@ import { createOrderThunk } from '../../../services/order-details';
 import { useModal } from '../../../hooks/useModal';
 import { OrderDetails } from '../../order-details/order-details';
 import { Modal } from '../../modal/modal';
-import { Preloader } from '../../preloader/preloader';
 import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from '../../../services/store';
 import { IIngredientsExtId } from '../../../interfaces/ingredient-inner';
@@ -23,8 +22,7 @@ export const ConstructorButton = () => {
 			constructorIngredients, 
 			constructorPrice 
 	} = useAppSelector(store => store.burgerConstructor);
-  const { loading } = useAppSelector(store => store.orderDetails);
-	
+  
 	React.useEffect(() => {
 		dispatch(calcPrice());
 	}, [dispatch, constructorBun, constructorIngredients]);
@@ -60,7 +58,6 @@ export const ConstructorButton = () => {
       </Button>
       {isModalOpen &&
         <Modal onClose={handleCloseOrder}>
-          <Preloader isLoading={loading !== 'succeeded' }/>
           <OrderDetails />
         </Modal>
       }

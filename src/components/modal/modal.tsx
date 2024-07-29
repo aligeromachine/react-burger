@@ -14,7 +14,7 @@ const ModalOverlay = ({ onClick, overlay }: IModalOverlayProps) => {
 
 interface IModalProps {
   onClose: () => void;
-  children?: React.ReactElement[] | React.ReactElement;
+  children?: React.ReactElement;
 }
 
 export const Modal =  ({ onClose, children }: IModalProps) => {

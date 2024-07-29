@@ -2,13 +2,16 @@ import React from 'react';
 import st from './order-details.module.css';
 import orderApprove from '../../images/done.jpg';
 import { useAppSelector } from '../../services/store';
+import { Preloader } from '../preloader/preloader';
 
 export const OrderDetails = () => {
 	
 	const { orderData } = useAppSelector(store => store.orderDetails);
+	const { loading } = useAppSelector(store => store.orderDetails);
 
 	return (
-    <div className={st.orderContainer}>			
+    <div className={st.orderContainer}>	
+			<Preloader isLoading={loading !== 'succeeded' }/>		
 			{orderData && (
 				<>
 					<p className="text_type_digits-large">{orderData.order.number}</p>
