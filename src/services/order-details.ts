@@ -3,7 +3,7 @@ import { postOrder } from "../utils/requests";
 import { IOrderState } from "../interfaces/store";
 import { IResponseOrder } from "../interfaces/order-response";
 import { IIngredientsExtId } from "../interfaces/ingredient-inner";
-import { AsyncThunkConfig } from "@reduxjs/toolkit/dist/createAsyncThunk";
+import { AsyncThunkConfig } from "../interfaces/base";
 
 const initialState: IOrderState = {
   orderData: null,

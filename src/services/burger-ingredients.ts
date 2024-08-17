@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import { getIngredients } from "../utils/requests";
 import { IIngredientsState } from "../interfaces/store";
 import { IResponseIngredient } from "../interfaces/ingredient-response";
-import { AsyncThunkConfig } from "@reduxjs/toolkit/dist/createAsyncThunk";
+import { AsyncThunkConfig } from "../interfaces/base";
 
 const initialState: IIngredientsState = {
   ingredients: [],

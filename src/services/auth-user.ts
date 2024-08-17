@@ -21,6 +21,7 @@ import {
 } from "../interfaces/user-response";
 
 import { 
+  AsyncThunkConfig,
   IRequestsInit 
 } from "../interfaces/base";
 
@@ -32,7 +33,6 @@ import {
 import { 
   IAuthState 
 } from "../interfaces/store";
-import { AsyncThunkConfig } from "@reduxjs/toolkit/dist/createAsyncThunk";
 
 const user_init: IUser = {
   email: "",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDrop } from 'react-dnd';
+import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { bunAdd } from '../../../services/burger-constructor';
 import { useAppDispatch, useAppSelector } from '../../../services/store';
 import { IIngredientsExtId } from "../../../interfaces/ingredient-inner";
@@ -20,7 +20,7 @@ export const Bun = ({ position }: IBunProps) => {
 	
 	const [{ isHover }, dropTarget] = useDrop<IIngredientsExtId, unknown, ICollectedProps>({
 		accept: 'bun',
-		collect: monitor => ({
+		collect: (monitor: DropTargetMonitor) => ({
 			isHover: monitor.isOver()
 		}),
 		drop(payload) {dispatch(bunAdd(payload));},
